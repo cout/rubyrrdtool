@@ -16,11 +16,12 @@
 extern "C" {
 #endif
 
-/* rrd info interface */
+/* rrd info interface
 enum info_type   { RD_I_VAL=0,
 	       RD_I_CNT,
 	       RD_I_STR, 
 		   RD_I_INT };
+*/
 
 typedef union infoval { 
     unsigned long u_cnt; 
@@ -31,12 +32,12 @@ typedef union infoval {
 
 typedef struct info_t {
     char            *key;
-    enum info_type  type;
+    rrd_info_type_t  type;
     union infoval   value;
     struct info_t   *next;
 } info_t;
 
-info_t *rrd_info(int, char **);
+//info_t *rrd_info(int, char **);
 
 
 
