@@ -3,6 +3,7 @@
  */
 
 #include <unistd.h>
+#include <math.h>   /* for isnan */
 #include <ruby.h>
 #include <rrd.h>
 #include "rrd_info.h"
