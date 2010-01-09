@@ -242,10 +242,10 @@ VALUE rb_rrd_update(VALUE self, VALUE args)
     return rrd_call(rrd_update, args);
 }
 
-void Init_rrd() 
+void Init_errand() 
 {
-    mRRD = rb_define_module("RRD");
-    rb_eRRDError = rb_define_class("RRDError", rb_eStandardError);
+    mRRD = rb_define_module("Errand");
+    rb_eRRDError = rb_define_class("ErrandError", rb_eStandardError);
 
     rb_define_module_function(mRRD, "create", rb_rrd_create, -2);
     rb_define_module_function(mRRD, "dump", rb_rrd_dump, -2);

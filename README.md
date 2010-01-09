@@ -5,18 +5,18 @@ Authors: Lindsay Holmwood <lindsay@holmwood.id.au>
 
 Based on work by Miles Egan <miles at caddr.com>
 
-RubyRRDtool
-============
+Errand
+======
 
-rubyrrdtool provides ruby bindings for RRD functions (via librrd), with
-functionality comparable to the native perl bindings. 
+Errand provides Ruby bindings for RRD functions (via librrd), and a concise 
+DSL for interacting with RRDs. 
 
 Check under spec/ for usage examples. 
 
 Dependencies
 ============
 
-rubyrrdtool requires RRDtool version 1.2 or later. Some RRD functions such
+**Errand** requires RRDtool version 1.2 or later. Some RRD functions such
 as rrddump are only available with the latest RRDtool.
 
 Installation is standard. If you've installed the gem, you should be ready
@@ -34,7 +34,7 @@ doesn't, please report bugs at [http://github.com/eric/rubyrrdtool/issues](http:
 Building gem
 ============
 
-gem build RubyRRDtool.gemspec 
+gem build errand.gemspec 
 
 Testing 
 =======
