@@ -78,29 +78,24 @@ class Errand
   end
 
   def update(opts={})
-    if opts[:sources].find { |source| source[:time] }
-      times = opts[:sources].map {|s| s[:time]}.uniq
-      
-      if times.size == 1
-        sources = opts[:sources].map { |s|
-          s[:name]
-        }.join(':')
+    time_specified = opts[:sources].find { |source| source[:time] }
+    times = opts[:sources].map {|s| s[:time]}.uniq
 
-        values = "#{times.first}:" + opts[:sources].map { |s|
-          s[:value]
-        }.join(':')
+    sources = opts[:sources].map { |source|
+      source[:name]
+    }.join(':')
 
-      end
-
-    else
-      sources = opts[:sources].map { |source|
-        source[:name]
+    case 
+    when time_specified && times.size == 1
+      values = "#{times.first}:" + opts[:sources].map { |s|
+        s[:value]
       }.join(':')
-
+    when time_specified && times.size > 1
+      raise "edge case!"
+    when !time_specified
       values = "N:" + opts[:sources].map { |source|
         source[:value]
       }.join(':')
-
     end
     
     args = ["--template", sources, values]
