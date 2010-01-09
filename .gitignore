@@ -4,3 +4,5 @@ test.rrd
 mkmf.log
 pkg
 *~
+*.o
+*.so
