@@ -4,7 +4,7 @@
 $:.unshift '..'
 
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
-require 'RRDtool'
+require 'rrd'
 
 class TestRRDtool < Test::Unit::TestCase
   def setup
