@@ -26,5 +26,5 @@ EOF
     $CFLAGS += " -DHAVE_RRD_DUMP_R_2"
 end
 
-create_makefile("errand")
+create_makefile("errand_backend")
 

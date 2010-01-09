@@ -242,9 +242,9 @@ VALUE rb_rrd_update(VALUE self, VALUE args)
     return rrd_call(rrd_update, args);
 }
 
-void Init_errand() 
+void Init_errand_backend() 
 {
-    mRRD = rb_define_module("Errand");
+    mRRD = rb_define_module("ErrandBackend");
     rb_eRRDError = rb_define_class("ErrandError", rb_eStandardError);
 
     rb_define_module_function(mRRD, "create", rb_rrd_create, -2);
