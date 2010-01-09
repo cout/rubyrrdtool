@@ -1,9 +1,0 @@
-README
-Manifest.txt
-Rakefile
-extconf.rb
-rrd_addition.h
-rubyrrdtool.c
-test/test_rrdtool.rb
-examples/function_test.rb
-examples/minmax.rb
