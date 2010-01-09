@@ -30,6 +30,9 @@ suggestions.
 
 Thanks to Tobi for rrdtool!
 
+== Building gem
+
+gem build RubyRRDtool.gemspec 
 
 == To do
 
