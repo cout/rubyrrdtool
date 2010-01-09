@@ -1,47 +1,60 @@
-# README -- ruby librrd bindings
 
-Authors: David Bacher <drbacher at alum.mit.edu>
+Authors: Lindsay Holmwood <lindsay@holmwood.id.au>
+				 David Bacher <drbacher at alum.mit.edu>
          Mark Probert <probertm at acm.org>  
-based on work by Miles Egan <miles at caddr.com>
 
+Based on work by Miles Egan <miles at caddr.com>
 
-== Introduction 
+RubyRRDtool
+============
 
 rubyrrdtool provides ruby bindings for RRD functions (via librrd), with
-functionality comparable to the native perl bindings. See examples/minmax.rb
-or the unit tests in the test directory for scripts that exercise the
-rrdtool functions. 
+functionality comparable to the native perl bindings. 
 
+Check under spec/ for usage examples. 
 
-== Installation
+Dependencies
+============
 
 rubyrrdtool requires RRDtool version 1.2 or later. Some RRD functions such
 as rrddump are only available with the latest RRDtool.
 
 Installation is standard. If you've installed the gem, you should be ready
-to go. Otherwise, simply run:
+to go. 
 
-ruby extconf.rb
-make
-make install
+Otherwise, simply run:
 
-I hope this works for you.  Please let me know if you have any problems or
-suggestions.
+    ruby extconf.rb
+    make
+    make install
 
-Thanks to Tobi for rrdtool!
+This should build a library named `rrd.so` in the current directory. If it 
+doesn't, please report bugs at [http://github.com/eric/rubyrrdtool/issues](http://github.com/eric/rubyrrdtool/issues)!
 
-== Building gem
+Building gem
+============
 
 gem build RubyRRDtool.gemspec 
 
-== To do
+Testing 
+=======
+
+Testing is done with RSpec. 
+
+To run tests: 
+
+   rake spec
+
+To do
+=====
 
 * Documentation
 * Build an interface that feels more ruby-like around this simple functional
   translation
 
 
-== License
+License
+=======
 
 (the MIT license)
 
