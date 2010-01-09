@@ -55,6 +55,26 @@ describe Errand do
     end
   end
 
+  it "should update with weird data" do 
+    time = Time.now.to_i - 300
+    @rrd.create(:start => time - 1, :step => 1, 
+                :sources => [ 
+                  {:name => "Sum", :type => :gauge, :heartbeat => 1800, :min => 0, :max => 4294967295},
+                  {:name => "Total", :type => :gauge, :heartbeat => 1800, :min => 0, :max => 'U'} ],
+                :archives => [
+                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}])
+
+    100.times do |i|
+      @rrd.update(:sources => [ 
+                    {:name => "Sum", :time => time + i * 2, :value => 1},
+                    {:name => "Total", :time => time + i, :value => 30}]).should be_true
+    end
+    
+    @rrd.fetch[:data].each_pair do |source, values|
+      values.compact.size.should > 0
+    end
+  end
+
   it "should fetch data" do
     time = Time.now.to_i - 300
     @rrd.create(:start => time - 1, :step => 1, 
