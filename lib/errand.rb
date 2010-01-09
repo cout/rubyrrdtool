@@ -90,8 +90,6 @@ class Errand
           s[:value]
         }.join(':')
 
-        args = ["--template", sources, values]
-        @backend.update(@filename, *args)
       end
 
     else
@@ -103,8 +101,10 @@ class Errand
         source[:value]
       }.join(':')
 
-      @backend.update(@filename, values)
     end
+    
+    args = ["--template", sources, values]
+    @backend.update(@filename, *args)
     true
   end
 
