@@ -242,7 +242,7 @@ VALUE rb_rrd_update(VALUE self, VALUE args)
     return rrd_call(rrd_update, args);
 }
 
-void Init_RRD() 
+void Init_rrd() 
 {
     mRRD = rb_define_module("RRD");
     rb_eRRDError = rb_define_class("RRDError", rb_eStandardError);

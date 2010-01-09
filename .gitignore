@@ -5,3 +5,5 @@ mkmf.log
 pkg
 *~
 *.gem
+*.o
+*.so
