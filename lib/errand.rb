@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby 
 
+$: << File.expand_path(File.join(File.dirname(__FILE__), '..'))
+require 'errand_backend'
+
 class Errand
   def initialize(opts={})
     raise ArgumentError unless opts[:filename]
