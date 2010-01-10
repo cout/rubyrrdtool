@@ -1,17 +1,33 @@
-
-Authors: Lindsay Holmwood <lindsay@holmwood.id.au>
-				 David Bacher <drbacher at alum.mit.edu>
-         Mark Probert <probertm at acm.org>  
-
-Based on work by Miles Egan <miles at caddr.com>
-
 Errand
 ======
 
-Errand provides Ruby bindings for RRD functions (via librrd), and a concise 
-DSL for interacting with RRDs. 
+Errand provides Ruby bindings for RRD functions (via librrd), and a clear
+API for interacting with RRDs. 
 
 Check under spec/ for usage examples. 
+
+Using
+=====
+
+To set up an RRD to work with (whether it exists or otherwise): 
+
+    @rrd = Errand.new(:filename => "data.rrd")
+
+To create an RRD:
+
+    @rrd.create(:sources => [
+                  {:name => "Counter", :type => :counter, :heartbeat => 1800, :min => 0, :max => 4294967295}],
+                :archives => [
+                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}])
+
+To update said RRD: 
+
+    @rrd.update(:sources => [{:name => "Counter", :value => 1}]
+
+To fetch that data: 
+
+    @rrd.fetch # <= {:start => Time, :end => Time, 
+                     :data => {"Counter" => [nil, nil, nil, 1]}
 
 Dependencies
 ============
