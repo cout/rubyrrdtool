@@ -78,6 +78,8 @@ class Errand
 
     args = options + sources + archives
     @backend.create(@filename, *args) # * "flattens" the array
+
+    true
   end
 
   def update(opts={})
