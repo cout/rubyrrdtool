@@ -79,7 +79,7 @@ class Errand
 
   def update(opts={})
     time_specified = opts[:sources].find { |source| source[:time] }
-    times = opts[:sources].map {|s| s[:time]}.uniq
+    times = opts[:sources].map {|s| s[:time]}.sort.uniq if time_specified
 
     sources = opts[:sources].map { |source|
       source[:name]
@@ -90,16 +90,34 @@ class Errand
       values = "#{times.first}:" + opts[:sources].map { |s|
         s[:value]
       }.join(':')
+
+      args = ["--template", sources, values]
+      @backend.update(@filename, *args)
     when time_specified && times.size > 1
-      raise "edge case!"
+      times.each do |t|
+        points = opts[:sources].find_all { |source| source[:time] == t }
+      
+        sources = points.map { |p|
+          p[:name]
+        }.join(':')
+
+        values = "#{t}:" + points.map { |p|
+          p[:value]
+        }.join(':')
+
+        args = ["--template", sources, values]
+        @backend.update(@filename, *args)
+      end
+
     when !time_specified
       values = "N:" + opts[:sources].map { |source|
         source[:value]
       }.join(':')
+
+      args = ["--template", sources, values]
+      @backend.update(@filename, *args)
     end
     
-    args = ["--template", sources, values]
-    @backend.update(@filename, *args)
     true
   end
 
