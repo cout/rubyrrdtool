@@ -21,7 +21,7 @@ describe Errand do
                   {:name => "Counter", :type => :counter, :heartbeat => 1800, :min => 0, :max => 4294967295},
                   {:name => "Total", :type => :derive, :heartbeat => 1800, :min => 0, :max => 'U'} ],
                 :archives => [
-                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}])
+                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}]).should be_true
     
     sources = @rrd.info.keys.grep(/^ds\[/).map { |ds| ds[3..-1].split(']').first}.uniq
     sources.size.should == 2
@@ -34,7 +34,7 @@ describe Errand do
                   {:name => "Counter", :type => :counter, :heartbeat => 1800, :min => 0, :max => 4294967295},
                   {:name => "Total", :type => :derive, :heartbeat => 1800, :min => 0, :max => 'U'} ],
                 :archives => [
-                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}])
+                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}]).should be_true
    
     tmpfile = File.join(@tmpdir, 'test.out')
     lambda {
@@ -49,7 +49,7 @@ describe Errand do
                   {:name => "Sum", :type => :gauge, :heartbeat => 1800, :min => 0, :max => 4294967295},
                   {:name => "Total", :type => :gauge, :heartbeat => 1800, :min => 0, :max => 'U'} ],
                 :archives => [
-                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}])
+                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}]).should be_true
 
     @rrd.update(:sources => [ 
                   {:name => "Sum", :value => 1},
@@ -67,7 +67,7 @@ describe Errand do
                   {:name => "Sum", :type => :gauge, :heartbeat => 1800, :min => 0, :max => 4294967295},
                   {:name => "Total", :type => :gauge, :heartbeat => 1800, :min => 0, :max => 'U'} ],
                 :archives => [
-                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}])
+                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}]).should be_true
 
     updates = []
     100.times do |i|
@@ -89,7 +89,7 @@ describe Errand do
                   {:name => "Sum", :type => :gauge, :heartbeat => 1800, :min => 0, :max => 4294967295},
                   {:name => "Total", :type => :gauge, :heartbeat => 1800, :min => 0, :max => 'U'} ],
                 :archives => [
-                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}])
+                  {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}]).should be_true
 
     100.times do |i|
       @rrd.update(:sources => [ 
