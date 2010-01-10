@@ -3,11 +3,16 @@
 $: <<  File.expand_path(File.join(File.dirname(__FILE__), '..'))
 require 'errand_backend'
 require 'lib/errand'
+require 'tmpdir'
 
 describe Errand do 
 
+  before(:all) do
+    @tmpdir = Dir.mktmpdir
+  end
+
   before(:each) do 
-    @rrd = Errand.new(:filename => 'test.rrd')
+    @rrd = Errand.new(:filename => File.join(@tmpdir, 'test.rrd'))
   end
 
   it "should create data" do 
@@ -31,9 +36,10 @@ describe Errand do
                   {:name => "Total", :type => :derive, :heartbeat => 1800, :min => 0, :max => 'U'} ],
                 :archives => [
                   {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}])
-    
+   
+    tmpfile = File.join(@tmpdir, 'test.out')
     lambda {
-      @rrd.dump(:filename => 'test.out')
+      @rrd.dump(:filename => tmpfile)
       @rrd.dump # <= no args 
     }.should_not raise_error
   end
@@ -64,11 +70,13 @@ describe Errand do
                 :archives => [
                   {:function => :average, :xff => 0.5, :steps => 1, :rows => 2400}])
 
+    updates = []
     100.times do |i|
-      @rrd.update(:sources => [ 
-                    {:name => "Sum", :time => time + i * 2, :value => 1},
-                    {:name => "Total", :time => time + i, :value => 30}]).should be_true
+      updates << {:name => "Sum", :time => time + i , :value => 1}
+      updates << {:name => "Total", :time => time + i * 4, :value => 30}
     end
+    
+    @rrd.update(:sources => updates)
     
     @rrd.fetch[:data].each_pair do |source, values|
       values.compact.size.should > 0
