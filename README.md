@@ -61,12 +61,10 @@ To run tests:
 
    rake spec
 
-To do
-=====
+Todo
+====
 
-* Documentation
-* Build an interface that feels more ruby-like around this simple functional
-  translation
+* Extend documentation with examples
 
 
 License
