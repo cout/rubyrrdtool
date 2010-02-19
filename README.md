@@ -47,10 +47,16 @@ Otherwise, simply run:
 This should build a library named `rrd.so` in the current directory. If it 
 doesn't, please report bugs at [http://github.com/eric/rubyrrdtool/issues](http://github.com/eric/rubyrrdtool/issues)!
 
-Building gem
-============
+Building the gem
+================
 
-gem build errand.gemspec 
+Errand is managed by Jeweller, which generates the gemspec for you: 
+
+    rake gemspec
+
+Once the gemspec is generated, build the gem: 
+
+    gem build errand.gemspec 
 
 Testing 
 =======
