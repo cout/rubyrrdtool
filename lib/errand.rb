@@ -23,8 +23,13 @@ class Errand
     start  = (opts[:start] || Time.now.to_i - 3600).to_s
     finish = (opts[:finish] || Time.now.to_i).to_s
     function = opts[:function] ? opts[:function].to_s.upcase : "AVERAGE"
+    resolution = opts[:resolution]
 
     args = [@filename, "--start", start, "--end", finish, function]
+
+    if resolution then
+      args.concat(["--resolution", resolution.to_s])
+    end
 
     data = @backend.fetch(*args)
     start  = data[0]
